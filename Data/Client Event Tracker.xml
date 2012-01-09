@@ -1,0 +1,60 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>ClientEventTracker</PackageName>
+      <Author>Alexander Doroshenko</Author>
+      <Version>1.0.0</Version>
+      <Revision />
+      <License />
+      <Comment />
+      <Attributes />
+      <Readme>Installation guide:
+
+1. Install the package. It contains only files:
+
+/ClientEventTracker.ashx
+/ClientEventTracker.js
+/bin/Sitecore.SharedSource.ClientEventTracker.dll 
+
+2. Update web.config (this step is not mandatory, it just improves performance) - add the following string to the "IgnoreUrlPrefixes" setting: /ClientEventTracker.ashx.
+
+3. Add the following code to the &lt;head&gt; section of the page where you want to track events:
+&lt;script src="/ClientEventTracker.js" type="text/javascript"&gt;&lt;/script&gt;
+
+4. And use the API as it shown in the example below:
+
+var event=new AnalyticsPageEvent('Instant Demo', 'Some Text Here');
+event.trigger();</Readme>
+      <Publisher />
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xfiles>
+      <Entries>
+        <x-item>/bin/Sitecore.SharedSource.ClientEventTracker.dll</x-item>
+        <x-item>/ClientEventTracker.ashx</x-item>
+        <x-item>/ClientEventTracker.js</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms />
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Files</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
