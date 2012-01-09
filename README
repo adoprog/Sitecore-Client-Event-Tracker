@@ -1,0 +1,5 @@
+Client Event Tracker module allows tracking client-side events with Sitecore Analytics. 
+
+After installing the module, you'll be able to track external file downloads, Ajax events and any kind of visitor interaction that does not cause the page to refresh (expanding / collapsing page areas, popup windows, etc.). Read more about the module here: http://sitecoresnippets.blogspot.com/2011/09/client-side-event-tracking-with.html. 
+
+Note: Client Event Tracker has been tested with Sitecore 6.4.1, but should work with earlier releases as well. Version that supports Sitecore 6.5 and DMS 2.0 will be added later.
