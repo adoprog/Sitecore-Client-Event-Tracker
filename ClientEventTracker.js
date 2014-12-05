@@ -1,11 +1,10 @@
 ﻿var eventTracker = false;
 
-function AnalyticsPageEvent(name, text, key, data, integer) {
+function AnalyticsPageEvent(name, text, key, data) {
     this.eventName = name;
     this.text = text;
     this.key = key;
     this.data = data;
-    this.integer = integer;
 
 
     this.trigger = function() {
@@ -24,9 +23,6 @@ function AnalyticsPageEvent(name, text, key, data, integer) {
         }
         if (this.data) {
             queryString += '&' + '' + 'data' + '=' + this.data;
-        }
-        if (this.integer) {
-            queryString += '&' + '' + 'integer' + '=' + this.integer;
         }
         if (queryString != '') {
             var url = '/ClientEventTracker.ashx' + '?ra=' + eventTracker.randomstring() + queryString;
