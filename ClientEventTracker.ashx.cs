@@ -3,13 +3,14 @@ using System.Web;
 using Sitecore.Analytics;
 using Sitecore.Analytics.Data;
 using Sitecore.Diagnostics;
+using System.Web.SessionState;
 
 namespace Sitecore.SharedSource.ClientEventTracker
 {
     /// <summary>
     /// Summary description for ClientEventTracker
     /// </summary>
-    public class ClientEventTracker : IHttpHandler
+    public class ClientEventTracker : IHttpHandler, IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {
