@@ -3,13 +3,14 @@ using System.Web;
 using Sitecore.Analytics;
 using Sitecore.Analytics.Data;
 using Sitecore.Diagnostics;
+using System.Web.SessionState;
 
 namespace Sitecore.SharedSource.ClientEventTracker
 {
     /// <summary>
     /// Summary description for ClientEventTracker
     /// </summary>
-    public class ClientEventTracker : IHttpHandler
+    public class ClientEventTracker : IHttpHandler, IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {
@@ -40,7 +41,7 @@ namespace Sitecore.SharedSource.ClientEventTracker
 
                 if (!Tracker.IsActive || Tracker.Current == null)
                 {
-                    Tracker.StartTracking();
+                    Tracker.Initialize(); // init tracker without tracking the endpoint as a page
                 }
 
                 if (Tracker.Current == null || Tracker.Current.Interaction == null)
@@ -48,7 +49,7 @@ namespace Sitecore.SharedSource.ClientEventTracker
                     return;
                 }
 
-                if (Tracker.Current.Interaction.PreviousPage == null)
+                if (Tracker.Current.Interaction.CurrentPage == null)
                 {
                     return;
                 }
@@ -56,13 +57,13 @@ namespace Sitecore.SharedSource.ClientEventTracker
 
                 if (string.IsNullOrEmpty(text))
                 {
-                    Tracker.Current.Interaction.PreviousPage.Register(eventName, string.Empty);
+                    Tracker.Current.Interaction.CurrentPage.Register(eventName, string.Empty);
                 }
                 else
                 {
                     if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(data))
                     {
-                        Tracker.Current.Interaction.PreviousPage.Register(eventName, text);
+                        Tracker.Current.Interaction.CurrentPage.Register(eventName, text);
                         return;
                     }
 
@@ -72,7 +73,7 @@ namespace Sitecore.SharedSource.ClientEventTracker
                         Data = data,
                         Text = text
                     };
-                    Tracker.Current.Interaction.PreviousPage.Register(eventData);
+                    Tracker.Current.Interaction.CurrentPage.Register(eventData);
                     return;
 
                 }
